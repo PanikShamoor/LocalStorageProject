@@ -10,11 +10,17 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
 
-    var itemArray = ["First Item", "Second Item", "Third Item"]
+    var itemArray : [String] = [String]()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String]{
+            itemArray = items
+        }else{
+            print("Item Not Available")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +66,8 @@ class TodoListViewController: UITableViewController {
             
             self.itemArray.append(textField.text!)
             self.tableView.reloadData()
+            
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
         }
         
         alert.addAction(action)
