@@ -10,17 +10,24 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
 
-    var itemArray : [String] = [String]()
-    let defaults = UserDefaults.standard
+    var itemArray : [ItemDetail] = [ItemDetail]()
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if let items = defaults.array(forKey: "ToDoListArray") as? [String]{
-            itemArray = items
-        }else{
-            print("Item Not Available")
-        }
+//        if let items = userDefaults.array(forKey: MyConstants.ITEMS_LIST_ARRAY_KEY) as? [ItemDetail]{
+//            itemArray = items
+//        }else{
+//            print("Item Not Available")
+//        }
+        itemArray.append(ItemDetail(itemName: "First Item" , checked: false))
+        itemArray.append(ItemDetail(itemName: "Second Item" , checked: false))
+        itemArray.append(ItemDetail(itemName: "Third Item" , checked: false))
+//        itemArray.append(ItemDetail(itemName: "Second Item" , checked: false))
+//        itemArray.append(ItemDetail(itemName: "Third Item" , checked: false))
+//        itemArray.append(ItemDetail(itemName: "Forth Item" , checked: false))
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,20 +41,17 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
-        
-        cell.textLabel?.text = itemArray[indexPath.row]
-        
+        let itemDetail = itemArray[indexPath.row]
+        cell.textLabel?.text = itemDetail.itemName
+        cell.accessoryType = itemDetail.checked ? .checkmark : .none
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(itemArray[indexPath.row])
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        }else{
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+        itemArray[indexPath.row].checked = !itemArray[indexPath.row].checked
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
 
     
@@ -62,12 +66,9 @@ class TodoListViewController: UITableViewController {
         }
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            print("Add Item Pressed \(String(describing: textField.text))")
-            
-            self.itemArray.append(textField.text!)
-            self.tableView.reloadData()
-            
-            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
+            self.itemArray.append(ItemDetail(itemName: textField.text!, checked: false))
+            self.tableView.reloadData()            
+            self.userDefaults.set(self.itemArray, forKey: MyConstants.ITEMS_LIST_ARRAY_KEY)
         }
         
         alert.addAction(action)
