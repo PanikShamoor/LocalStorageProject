@@ -11,22 +11,16 @@ import UIKit
 class TodoListViewController: UITableViewController {
 
     var itemArray : [ItemDetail] = [ItemDetail]()
-    let userDefaults = UserDefaults.standard
+//    var dataFilePath : Any?
+//    let userDefaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(MyConstants.ITEMS_PLIST)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 //        if let items = userDefaults.array(forKey: MyConstants.ITEMS_LIST_ARRAY_KEY) as? [ItemDetail]{
 //            itemArray = items
-//        }else{
-//            print("Item Not Available")
 //        }
-        itemArray.append(ItemDetail(itemName: "First Item" , checked: false))
-        itemArray.append(ItemDetail(itemName: "Second Item" , checked: false))
-        itemArray.append(ItemDetail(itemName: "Third Item" , checked: false))
-//        itemArray.append(ItemDetail(itemName: "Second Item" , checked: false))
-//        itemArray.append(ItemDetail(itemName: "Third Item" , checked: false))
-//        itemArray.append(ItemDetail(itemName: "Forth Item" , checked: false))
+        loadItems()
         
     }
 
@@ -51,7 +45,7 @@ class TodoListViewController: UITableViewController {
         itemArray[indexPath.row].checked = !itemArray[indexPath.row].checked
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        updatePlist()
     }
 
     
@@ -68,7 +62,10 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             self.itemArray.append(ItemDetail(itemName: textField.text!, checked: false))
             self.tableView.reloadData()            
-            self.userDefaults.set(self.itemArray, forKey: MyConstants.ITEMS_LIST_ARRAY_KEY)
+//            self.userDefaults.set(self.itemArray, forKey: MyConstants.ITEMS_LIST_ARRAY_KEY)
+           
+            self.updatePlist()
+            
         }
         
         alert.addAction(action)
@@ -77,7 +74,29 @@ class TodoListViewController: UITableViewController {
         
     }
     
+    func updatePlist() {
+        let encoder = PropertyListEncoder()
+        do{
+            let data = try encoder.encode(self.itemArray)
+            try data.write(to: self.dataFilePath)
+        }catch{
+            print("Encoding Error \(error)")
+        }
+    }
     
+    func loadItems(){
+        if let data = try? Data(contentsOf: dataFilePath){
+            let decoder = PropertyListDecoder()
+            do{
+//                decoder.decode([ItemDetail].self, from: data)
+                itemArray = try decoder.decode([ItemDetail].self, from: data)
+            }catch{
+                print("Load Item Error \(error)")
+            }
+            
+        }
+        
+    }
     
 }
 

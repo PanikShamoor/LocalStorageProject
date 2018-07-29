@@ -10,4 +10,5 @@ import Foundation
 
 class MyConstants {
     static let ITEMS_LIST_ARRAY_KEY = "ToDoListArray"
+    static let ITEMS_PLIST = "Items.plist"
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ItemDetail {
+class ItemDetail : Codable{
     var itemName = ""
     var checked = false
     
