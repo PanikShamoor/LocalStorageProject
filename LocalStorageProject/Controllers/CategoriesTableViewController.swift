@@ -8,16 +8,22 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 class CategoriesTableViewController: UITableViewController {
 
-    var categoryList = [Category]()
+    var categoryList : Results<CategoryData>?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var selectedCategory : Category?
-    
+    var selectedCategory : CategoryData?
+    let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
         loadItems()
+//        let calendar = NSCalendar.currentCalendar()
+//        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: date)
+//        let hour = components.hour
+//        let minutes = components.minute
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,15 +34,15 @@ class CategoriesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryList.count
+        return categoryList?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         
-        let category = categoryList[indexPath.row]
+        let category = categoryList?[indexPath.row]
         
-        cell.textLabel?.text = category.categoryName
+        cell.textLabel?.text = category?.categoryName ?? "NO Category Added Yet"
         
         cell.accessoryType = .disclosureIndicator
         
@@ -45,7 +51,7 @@ class CategoriesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedCategory = categoryList[indexPath.row]
+        selectedCategory = categoryList?[indexPath.row]
         performSegue(withIdentifier: "goToCategoryItems", sender: self)
     }
     
@@ -68,31 +74,33 @@ class CategoriesTableViewController: UITableViewController {
     
     func addNewItem(categoryName : String?) {
         if categoryName?.count != 0 {
-            let newCategory = Category(context: context)
-            newCategory.categoryName = categoryName
-            categoryList.append(newCategory)
-            tableView.reloadData()
-            saveState()
+            let newCategory = CategoryData()
+            newCategory.categoryName = categoryName!
+            saveState(categoryData: newCategory)
         }
     }
     
-    func saveState() {
+    func saveState(categoryData : CategoryData) {
         do{
-            try context.save()
+            try realm.write {
+                realm.add(categoryData)
+            }
         }catch{
             print("Save State Error \(error)")
         }
+        tableView.reloadData()
     }
     
     func loadItems() {
-        
-        let request : NSFetchRequest<Category> = Category.fetchRequest()
-        
-        do{
-            categoryList =  try context.fetch(request)
-        }catch{
-            print("Load Items ERROR \(error)")
-        }
+        categoryList = realm.objects(CategoryData.self)
+        tableView.reloadData()
+//        let request : NSFetchRequest<Category> = Category.fetchRequest()
+//
+//        do{
+//            categoryList =  try context.fetch(request)
+//        }catch{
+//            print("Load Items ERROR \(error)")
+//        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

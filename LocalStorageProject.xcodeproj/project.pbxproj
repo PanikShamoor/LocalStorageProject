@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79D96EF5B900114A74244F81 /* Pods_LocalStorageProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EE75EDBF3F7E36FE656068 /* Pods_LocalStorageProject.framework */; };
 		CB3BD5E5210D8EA5008800A3 /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3BD5E4210D8EA5008800A3 /* ItemDetail.swift */; };
 		CB3FEBB4210C8D1000606882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FEBB3210C8D1000606882 /* AppDelegate.swift */; };
 		CB3FEBB6210C8D1000606882 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3FEBB5210C8D1000606882 /* TodoListViewController.swift */; };
@@ -17,9 +18,14 @@
 		CB9E7C25210DC20800E5C82F /* ItemDetailCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB9E7C23210DC20700E5C82F /* ItemDetailCoreData.xcdatamodeld */; };
 		CBE96CC3210CE17F009D55D4 /* MyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE96CC2210CE17F009D55D4 /* MyConstants.swift */; };
 		CBFF6CD3210EE8E500A6B47A /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFF6CD2210EE8E500A6B47A /* CategoriesTableViewController.swift */; };
+		CBFF6CD5210F168F00A6B47A /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFF6CD4210F168F00A6B47A /* CategoryData.swift */; };
+		CBFF6CD7210F1B0900A6B47A /* ItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFF6CD6210F1B0900A6B47A /* ItemData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		484B36A8FC6F96E8C3F933C0 /* Pods-LocalStorageProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalStorageProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalStorageProject/Pods-LocalStorageProject.release.xcconfig"; sourceTree = "<group>"; };
+		60EE75EDBF3F7E36FE656068 /* Pods_LocalStorageProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocalStorageProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62ACA957E104368DE22F37D7 /* Pods-LocalStorageProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalStorageProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocalStorageProject/Pods-LocalStorageProject.debug.xcconfig"; sourceTree = "<group>"; };
 		CB3BD5E4210D8EA5008800A3 /* ItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
 		CB3FEBB0210C8D1000606882 /* LocalStorageProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalStorageProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3FEBB3210C8D1000606882 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +38,8 @@
 		CB9E7C24210DC20700E5C82F /* ItemDetailCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemDetailCoreData.xcdatamodel; sourceTree = "<group>"; };
 		CBE96CC2210CE17F009D55D4 /* MyConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConstants.swift; sourceTree = "<group>"; };
 		CBFF6CD2210EE8E500A6B47A /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		CBFF6CD4210F168F00A6B47A /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
+		CBFF6CD6210F1B0900A6B47A /* ItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,12 +47,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D96EF5B900114A74244F81 /* Pods_LocalStorageProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71E58246BF13D4EEBB811CD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60EE75EDBF3F7E36FE656068 /* Pods_LocalStorageProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD9BAD2F7FB48A6309969EB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62ACA957E104368DE22F37D7 /* Pods-LocalStorageProject.debug.xcconfig */,
+				484B36A8FC6F96E8C3F933C0 /* Pods-LocalStorageProject.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CB3BD5E6210D8F17008800A3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +103,8 @@
 			children = (
 				CB3FEBB2210C8D1000606882 /* LocalStorageProject */,
 				CB3FEBB1210C8D1000606882 /* Products */,
+				AD9BAD2F7FB48A6309969EB2 /* Pods */,
+				71E58246BF13D4EEBB811CD6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +135,8 @@
 				CBE96CC2210CE17F009D55D4 /* MyConstants.swift */,
 				CB3BD5E4210D8EA5008800A3 /* ItemDetail.swift */,
 				CB9E7C23210DC20700E5C82F /* ItemDetailCoreData.xcdatamodeld */,
+				CBFF6CD4210F168F00A6B47A /* CategoryData.swift */,
+				CBFF6CD6210F1B0900A6B47A /* ItemData.swift */,
 			);
 			name = Models;
 			path = "New Group";
@@ -119,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB3FEBC2210C8D1200606882 /* Build configuration list for PBXNativeTarget "LocalStorageProject" */;
 			buildPhases = (
+				9227303B505A849329E52CF9 /* [CP] Check Pods Manifest.lock */,
 				CB3FEBAC210C8D1000606882 /* Sources */,
 				CB3FEBAD210C8D1000606882 /* Frameworks */,
 				CB3FEBAE210C8D1000606882 /* Resources */,
+				1B2F501F3AD4089652C95551 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,16 +210,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B2F501F3AD4089652C95551 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LocalStorageProject/Pods-LocalStorageProject-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalStorageProject/Pods-LocalStorageProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9227303B505A849329E52CF9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LocalStorageProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CB3FEBAC210C8D1000606882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBFF6CD7210F1B0900A6B47A /* ItemData.swift in Sources */,
 				CBE96CC3210CE17F009D55D4 /* MyConstants.swift in Sources */,
 				CB3BD5E5210D8EA5008800A3 /* ItemDetail.swift in Sources */,
 				CB3FEBB6210C8D1000606882 /* TodoListViewController.swift in Sources */,
 				CB3FEBB4210C8D1000606882 /* AppDelegate.swift in Sources */,
 				CB771593210DD13500B117D1 /* CopyOfViewController.swift in Sources */,
+				CBFF6CD5210F168F00A6B47A /* CategoryData.swift in Sources */,
 				CB9E7C25210DC20800E5C82F /* ItemDetailCoreData.xcdatamodeld in Sources */,
 				CBFF6CD3210EE8E500A6B47A /* CategoriesTableViewController.swift in Sources */,
 			);
@@ -331,6 +406,7 @@
 		};
 		CB3FEBC3210C8D1200606882 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62ACA957E104368DE22F37D7 /* Pods-LocalStorageProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -348,6 +424,7 @@
 		};
 		CB3FEBC4210C8D1200606882 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 484B36A8FC6F96E8C3F933C0 /* Pods-LocalStorageProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
